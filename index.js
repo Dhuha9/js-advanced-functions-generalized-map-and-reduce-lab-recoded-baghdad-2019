@@ -10,13 +10,18 @@ function map(sourceArray,fun){
 }
 
 
+
 function reduce(sourceArray,fun,startingPoint){
- 
-    startingPoint=0;
-  
+    if(startingPoint===undefined){
+        let funType=typeof(fun(true,true)) 
+        if(funType==="number"){
+            startingPoint=0;
+        }else if(funType==="boolean"){
+            startingPoint=true;
+        }
+    }
     for(let i=0;i<sourceArray.length;i++){
         startingPoint= fun(sourceArray[i],startingPoint);
     }
     return startingPoint;
-
 }
